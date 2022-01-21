@@ -27,10 +27,10 @@ class SignupController extends Signup{
             header("location: ../index.php?error=email");
             exit();
         }
-        // if($this->pwdMatch() == false) {
-        //     header("location: ../index.php?error=passwordmatch");
-        //     exit();
-        // }
+        if($this->pwdMatch() == false) {
+             header("location: ../index.php?error=passwordmatch");
+             exit();
+        }
         if($this->uidTakenCheck() == false) {
             header("location: ../index.php?error=useroremailtaken");
             exit();
@@ -78,7 +78,7 @@ class SignupController extends Signup{
 
     private function pwdMatch() {
        
-        if (!$this->pwd !== $this->pwdRepeat) 
+        if ($this->pwd !== $this->pwdRepeat) 
         {
             $result = false;
         }
